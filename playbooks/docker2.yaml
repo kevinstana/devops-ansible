@@ -1,6 +1,4 @@
 ---
-# - hosts: docker
-become: yes
 tasks:
   - name: Install basic packages
     apt:
