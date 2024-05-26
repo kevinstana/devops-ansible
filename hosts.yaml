@@ -37,7 +37,12 @@ frontservers:
 dbservers:
   hosts:
     db:
-      ansible_host: db
+      ansible_host: 
+
+dockerserver:
+  hosts:
+    docker:
+      ansible_host: docker
 
 # localhosts:
 #   hosts:
