@@ -1,0 +1,4 @@
+db:
+  name: it21774_distributed
+  user: postgres
+  password: password

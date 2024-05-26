@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# README
+#
+# Getting Started:
+# 1. vagrant plugin install vagrant-hostmanager
+# 2. vagrant up
+# 3. vagrant ssh
+#
+# This should put you at the control host
+#  with access, by name, to other vms
+Vagrant.configure(2) do |config|
+  config.hostmanager.enabled = true
+
+  config.vm.box = "ubuntu/jammy64"
+
+  config.vm.define "backend" do |h|
+    h.vm.hostname = "backend"
+    h.vm.network "private_network", ip: "192.168.56.111"
+    # h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
+  end
+
+  config.vm.define "frontend" do |h|
+    h.vm.hostname = "frontend"
+    h.vm.network "private_network", ip: "192.168.56.112"
+    # h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
+  end
+
+  config.vm.define "db" do |h|
+    h.vm.hostname = "db"
+    h.vm.network "private_network", ip: "192.168.56.121"
+    # h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
+  end
+
+  # config.vm.define "jenkins" do |h|
+  #   h.vm.hostname = "jenkins"
+  #   h.vm.network "private_network", ip: "192.168.56.122"
+  #   # h.vm.provision :shell, inline: 'cat /vagrant/control.pub >> /home/vagrant/.ssh/authorized_keys'
+  # end
+end

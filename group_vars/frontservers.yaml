@@ -1,0 +1,5 @@
+frontendappdir: "{{ ansible_user_dir }}/frontend"
+repo: "https://github.com/kevinstana/distributed-frontend-angular"
+branch: "main"
+site_location: "/var/www/angular-jwt-auth"
+backend_server_url: "http://192.168.56.111:9090"

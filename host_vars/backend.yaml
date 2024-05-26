@@ -1,0 +1,25 @@
+appdir: "{{ ansible_user_dir }}/spring"
+repo: "https://github.com/kevinstana/distributed"
+branch: "main"
+appuser: "{{ansible_user_id}}"
+appgroup: "{{ansible_user_gid}}"
+url: "http://localhost"
+app_port: 9090
+nginx_proxy: "{{url}}:{{app_port}}"
+
+db_name: it21774_distributed
+db_username: postgres
+db_pass: password
+db_url: "192.168.56.121"
+db_port: "5432"
+
+app:
+  env:
+    server.port: "{{app_port}}"
+    spring.datasource.username: "{{db_username}}"
+    spring.datasource.password: "{{db_pass}}"
+    spring.datasource.url: jdbc:postgresql://{{db_url}}:{{db_port}}/{{db_name}}
+
+service:
+  workingdir: "{{ansible_user_dir}}/spring"
+  execstart: "java -jar target/it21774-0.0.1-SNAPSHOT.jar"
