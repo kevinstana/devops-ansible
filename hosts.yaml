@@ -1,28 +1,3 @@
-# ---
-# control:
-#   hosts:
-#     local-control:
-#       ansible_connection: local
-#     control-vm:
-#       ansible_host: control
-
-# appservers:
-#     hosts:
-#       appserver-vm:
-#         ansible_host: appserver
-#       frontend-vm:
-#         ansible_host: frontserver
-#       gcloud-app-server:
-#         ansible_host: devops-gcloud
-      
-
-# dbservers:
-#     hosts:
-#       dbserver-vm:
-#           ansible_host: dbserver
-#       azure-db-server:
-#           ansible_host: devops-azure
-
 ---
 backservers:
   hosts:
@@ -37,18 +12,9 @@ frontservers:
 dbservers:
   hosts:
     db:
-      ansible_host: 
+      ansible_host: db
 
 dockerserver:
   hosts:
-    docker:
-      ansible_host: docker
-
-# localhosts:
-#   hosts:
-#     backend:
-#       ansible_host: backend
-#     frontend:
-#       ansible_host: frontend
-#     db:
-#       ansible_host: db
+    docker-vm:
+      ansible_host: docker-vm

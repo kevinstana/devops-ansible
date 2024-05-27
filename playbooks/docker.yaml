@@ -1,123 +1,42 @@
-- hosts: frontend
+---
+- name: Install basic packages
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: true
+  loop:
+    - software-properties-common
+    - curl
+    - apt-transport-https
+    - ca-certificates
 
-  pre_tasks:
-    - name: Add Docker's official GPG key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-      become: yes
+- name: get key
+  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+  #ignore_errors: yes
 
-    - name: Install necessary packages
-      apt:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - ca-certificates
-        - curl
-        - wget
-      become: yes
+- name: Add docker ppa
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+    update_cache: yes
 
-    - name: Create directory for keyrings
-      file:
-        path: /etc/apt/keyrings
-        state: directory
-        mode: '0755'
-      become: yes
+- name: install docker
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: true
+  loop:
+    - docker-ce
+    - docker-compose
 
-    - name: Download Docker key
-      get_url:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /etc/apt/keyrings/docker.asc
-        mode: '0644'
-      become: yes
+- name: start docker service
+  service:
+    name: docker
+    state: started
+    enabled: true
 
-    - name: Add Docker repository to Apt sources
-      shell: |
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-      become: yes
-
-    - name: Update APT cache
-      apt:
-        update_cache: yes
-      become: yes
-
-    - name: Install Docker
-      apt:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-        - docker-buildx-plugin
-        - docker-compose-plugin
-      become: yes
-
-    - name: Install docker-compose
-      shell: |
-        wget https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-linux-x86_64
-        chmod +x docker-compose-linux-x86_64
-        ./docker-compose-linux-x86_64
-      become: yes
-
-    - name: Install Git
-      package:
-        name: git
-        state: latest
-      become: yes
-
-  tasks:
-    - name: Clone the git repository
-      git:
-        repo: "{{ repo }}"
-        dest: "{{ appdir }}"
-        version: "{{ branch }}"
-        force: yes
-      become: yes
-
-    - name: "Change postgres env in docker-compose.yaml"
-      lineinfile:
-        dest: "{{ appdir }}/docker-compose.yaml"
-        state: present
-        regexp: "^      - {{item.key}}="
-        line: "      - {{item.key}}={{item.value}}"
-      with_items:
-        - "{{db.env | dict2items}}"
-        - "{{backend.env | dict2items}}"
-      become: yes
-    
-    - name: Run docker-compose up
-      community.docker.docker_compose_v2:
-        project_src: "{{ appdir }}"
-        state: present
-      become: yes
-
-  #   - name: copy docker service file
-  #     template:cd
-  #       src: ../files/docker.service.j2
-  #       dest: "/etc/systemd/system/docker.service"
-  #     become: yes
-  #     become_user: root
-  #     notify: restart docker
-
-  #   - name: reload docker service
-  #     service:
-  #       name: docker
-  #       state: restarted
-  #     become: yes
-
-  #   - name: ensure docker service started
-  #     service:
-  #       name: docker
-  #       state: started
-  #       enabled: yes
-  #     become: yes
-
-  # handlers:
-  # - name: restart docker
-  #   service:
-  #     name: docker
-  #     state: restarted
-  #   become: yes
-
+- name: adding existing user to group docker
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
