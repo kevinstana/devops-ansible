@@ -37,11 +37,11 @@ ansible-playbook -l frontend -e backend_server_url=http://<BACKEND_IP>:<BACKEND_
 ```
 Make sure to replace `<BACKEND_IP>` with the IP address of the machine that the Spring Application runs on.  
 Also, replace `<BACKEND_PORT>` with the port that the Spring Application listens to. In the applciation I use, this is port `9090`.  
-If you are using the VMs from the Vagrantfile, then the URL is `http://192.168.56.111`.  
+If you are using the VMs from the Vagrantfile, then the URL is `http://192.168.56.111:9090`.  
 
 Now open a browser and navigate to the IP address of the machine the angular application is running on.  
-If you are using the VMs from the Vagrantfile, then the URL is `http://192.168.56.112`.  
-You should see a login page. The username is `admin` and the password is `password`.
+For vagrant VMs, the URL is `http://192.168.56.112`.  You should see a login page.  
+The username is `admin` and the password is `password`.
 
 # Deployment with Ansible - Docker
 Supposing you are in the `devops-ansible` directory, to deploy using Ansible and Docker, run the following commands:
