@@ -24,4 +24,4 @@ ansible-playbook -l frontend -e backend_server_url=<BACKEND_URL>:<BACKEND_PORT> 
 Make sure to replace <BACKEND_URL> with the IP address of the machine that the Spring Application runs on.
 Also., replace <BACKEND_PORT> with the port that the Spring Application listens to. In the applciation I use, this is port 9090.
 
-Now navigate to <BACKEND_URL>:<BACKEND_PORT>. You should see a login page.
+Now open a browser and navigate to <BACKEND_URL>:<BACKEND_PORT>. You should see a login page.
