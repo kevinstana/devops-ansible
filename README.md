@@ -28,14 +28,14 @@ ansible-playbook -l db postgres.yaml
 ```bash
 ansible-playbook -l backend -e db_url=<DATABASE_IP>:<DATABASE_PORT> spring.yaml
 ```
-Make sure to replace `<DATABASE_IP>` with the IP address of the machine that the postgres database runs on.
+Make sure to replace `<DATABASE_IP>` with the IP address of the machine that the postgres database runs on.  
 Also, replace `<DATABASE_PORT>` with the port that the postgres database listens to, usually this is port `5432`.
 
 ## Angular Application
 ```bash
 ansible-playbook -l frontend -e backend_server_url=<BACKEND_IP>:<BACKEND_PORT> angular.yaml
 ```
-Make sure to replace `<BACKEND_IP>` with the IP address of the machine that the Spring Application runs on.
+Make sure to replace `<BACKEND_IP>` with the IP address of the machine that the Spring Application runs on.  
 Also, replace `<BACKEND_PORT>` with the port that the Spring Application listens to. In the applciation I use, this is port `9090`.
 
 Now open a browser and navigate to `<BACKEND_IP>:<BACKEND_PORT>`. You should see a login page.  
