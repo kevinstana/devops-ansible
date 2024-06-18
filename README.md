@@ -39,6 +39,7 @@ Make sure to replace <BACKEND_IP> with the IP address of the machine that the Sp
 Also, replace <BACKEND_PORT> with the port that the Spring Application listens to. In the applciation I use, this is port 9090.
 
 Now open a browser and navigate to <BACKEND_IP>:<BACKEND_PORT>. You should see a login page.
+The username is "admin" and the password is "password".
 
 # Deployment with Ansible - Docker
 Supposing you are in the `playbooks` directory, to deploy using Ansible and Docker, run the following commands:
@@ -51,3 +52,4 @@ This playbook will first make sure Docker is installed on the target machine, an
 
 Now open a browser and navigate to the IP address of the machine that the containers where deployd to. For the port, use port 9000.
 So for example, navigate to my-super-app:9000. You should see a login page.
+The username is "admin" and the password is "password".
