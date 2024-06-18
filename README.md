@@ -62,5 +62,8 @@ This playbook will first make sure Docker is installed on the target machine, an
 
 Now open a browser and navigate to the IP address of the machine that the containers where deployd to.  
 
-For the port, use port `9000`. So for example, navigate to `my-super-app:9000`.  
+For the port, use port `9000`. So for example, if you are using the vagrant VMs, navigate to:
+```bash
+192.168.56.123:9000
+```  
 You should see a login page. The username is `admin` and the password is `password`.
