@@ -9,7 +9,7 @@ vagrant up
 ```
 Once the VMs have been created, use the following command to be able to access them using SSH:
 ```bash
-vagrant ssh-config >> .ssh/config
+vagrant ssh-config >> ~/.ssh/config
 ```
 ### CAUTION
 Be extremely careful with the previous command. It must be exactly `>>`.
