@@ -1,4 +1,4 @@
-This README does not describe how to use a Jenkins pipeline.
+This README does not describe how to make a Jenkins pipeline.
 # Hosts
 The `ansible_hosts` in `hosts.yaml` should be the same as the hosts in the `.ssh/config` file of the control node.
 
