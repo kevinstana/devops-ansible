@@ -2,6 +2,20 @@ This README does not describe how to make a Jenkins pipeline.
 # Hosts
 The `ansible_hosts` in `hosts.yaml` should be the same as the hosts in the `.ssh/config` file of the control node.
 
+## Vagrant Option
+You can use vagrant to create VMs on your machine. To do so, cd into the `vagrant` directory and run the following command:
+```bash
+vagrant up
+```
+Once the VMs have been created, use the following command to be able to access them using SSH:
+```bash
+vagrant ssh-config >> .ssh/config
+```
+### CAUTION
+Be extremely careful with the previous command. It must be exactly '>>'.
+If there is only '>' the contents of your .ssh/config will be deleted and you will lose valuable information!
+Using '>>' appends to the .ssh/config file.
+
 # Deployment with just Ansible
 Supposing you are in the `playbooks` directory, to deploy using just Ansible, run the following commands:
 
