@@ -42,8 +42,7 @@ For vagrant VMs, replace `<BACKEND_IP>:<BACKEND_PORT>` with:
 ```bash
 192.168.56.111:9090
 ```  
-Ortherwise, replace it with the IP address of the machine that the Spring Application runs on.  
-Also, replace `<BACKEND_PORT>` with the port that the Spring Application listens to. In the applciation I use, this is port `9090`.  
+Ortherwise, replace it with the IP address of the machine that the Spring Application runs on.    
 
 Now open a browser and navigate to the IP address of the machine the angular application is running on.  
 For vagrant VMs, the URL is:
