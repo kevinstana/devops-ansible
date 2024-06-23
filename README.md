@@ -40,7 +40,7 @@ ansible-playbook -l frontend -e backend_server_url=http://<BACKEND_IP>:<BACKEND_
 ```
 For vagrant VMs, replace `<BACKEND_IP>:<BACKEND_PORT>` with:  
 ```bash
-http://192.168.56.111:9090
+192.168.56.111:9090
 ```  
 Ortherwise, replace it with the IP address of the machine that the Spring Application runs on.  
 Also, replace `<BACKEND_PORT>` with the port that the Spring Application listens to. In the applciation I use, this is port `9090`.  
