@@ -28,11 +28,10 @@ ansible-playbook -l db playbooks/postgres.yaml
 ```bash
 ansible-playbook -l backend -e db_url=<DATABASE_URL> playbooks/spring.yaml
 ```
-For vagrant VMs, replace `<DATABASE_URL>` with:  
+For vagrant VMs:  
 ```bash
-192.168.56.121
-```  
-Otherwise, replace it with the IP address of the machine that the postgres database runs on.  
+ansible-playbook -l backend -e db_url=192.168.56.121 playbooks/spring.yaml
+```   
 
 ## Angular Application
 ```bash
@@ -40,7 +39,7 @@ ansible-playbook -l frontend -e backend_server_url=http://<BACKEND_IP>:<BACKEND_
 ```
 For vagrant VMs, replace `<BACKEND_IP>:<BACKEND_PORT>` with:  
 ```bash
-192.168.56.111:9090
+ansible-playbook -l frontend -e backend_server_url=http://192.168.56.111:9090 playbooks/angular.yaml
 ```  
 Ortherwise, replace it with the IP address of the machine that the Spring Application runs on.    
 
