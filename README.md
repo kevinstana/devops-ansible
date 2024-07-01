@@ -37,11 +37,10 @@ ansible-playbook -l backend -e db_url=192.168.56.121 playbooks/spring.yaml
 ```bash
 ansible-playbook -l frontend -e backend_server_url=http://<BACKEND_IP>:<BACKEND_PORT> playbooks/angular.yaml
 ```
-For vagrant VMs, replace `<BACKEND_IP>:<BACKEND_PORT>` with:  
+For vagrant VMs:  
 ```bash
 ansible-playbook -l frontend -e backend_server_url=http://192.168.56.111:9090 playbooks/angular.yaml
-```  
-Ortherwise, replace it with the IP address of the machine that the Spring Application runs on.    
+```     
 
 Now open a browser and navigate to the IP address of the machine the angular application is running on.  
 For vagrant VMs, the URL is:
